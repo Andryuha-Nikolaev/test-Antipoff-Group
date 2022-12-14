@@ -31,3 +31,13 @@
 .team__button-image {
   margin-left: 11.3px;
 }
+
+@media screen and (max-width: 576px) {
+  .team {
+    padding: 32px 0px;
+  }
+
+  .team__button {
+    margin-top: 32px;
+  }
+}

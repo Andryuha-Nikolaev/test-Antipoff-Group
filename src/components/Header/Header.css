@@ -17,15 +17,11 @@
 .header__button {
   padding: 7px 15px;
   box-sizing: border-box;
-  color: var(--button-text-color);
+
   background-color: transparent;
   border: 1px solid #f8f8f8;
   border-radius: 8px;
   min-height: 38px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
   cursor: pointer;
 }
 
@@ -55,15 +51,15 @@
 }
 
 .header__description {
-  color: var(--secondary-text-color);
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 23px;
+  color: #f8f8f8;
 }
 
 .header__user-content {
-  padding: 39px 108px;
+  padding: 39px 68px 39px 108px;
   display: flex;
   align-items: center;
 }
@@ -72,7 +68,6 @@
   width: 187px;
   height: 187px;
   border-radius: 50%;
-  overflow: hidden;
   object-fit: cover;
   background-size: cover;
   background-repeat: no-repeat;
@@ -98,4 +93,118 @@
   font-size: 32px;
   line-height: 38px;
   color: var(--secondary-text-color);
+}
+
+.header__button-text {
+  color: var(--button-text-color);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.header__button-img {
+  display: none;
+}
+
+@media screen and (max-width: 1023px) {
+  .header {
+    padding: 0 16px;
+  }
+
+  .header__button-container {
+    padding: 31px 16px 0;
+  }
+
+  .header__content {
+    max-width: 546px;
+  }
+
+  .header__title {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .header__description {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .header__user-content {
+    padding: 39px 78px;
+  }
+
+  .header__user-name {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .header__user-job {
+    font-size: 20px;
+    line-height: 23px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header {
+    min-height: 0;
+  }
+
+  .header__button-container {
+    padding: 12px 16px 0;
+  }
+
+  .header__button {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header__button_logout {
+    min-width: 40px;
+    height: 40px;
+  }
+
+  .header__button_back {
+    min-width: 40px;
+    height: 40px;
+  }
+
+  .header__content {
+    max-width: 846px;
+    padding: 64px 4.5px;
+  }
+
+  .header__user-content {
+    padding: 64px 0;
+    flex-direction: column;
+  }
+
+  .header__user-img {
+    order: 2;
+  }
+
+  .header__user-info {
+    margin-left: 0px;
+  }
+
+  .header__user-name {
+    text-align: center;
+  }
+
+  .header__user-job {
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .header__button-text {
+    display: none;
+  }
+
+  .header__button-img {
+    display: block;
+  }
 }

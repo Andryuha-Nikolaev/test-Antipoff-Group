@@ -7,6 +7,7 @@
   align-items: center;
   box-shadow: 0px 0.996045px 3.98418px rgba(51, 51, 51, 0.15);
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .card__image {
@@ -14,7 +15,6 @@
   height: 124px;
   margin-top: 36px;
   border-radius: 50%;
-  overflow: hidden;
   object-fit: cover;
   background-size: cover;
   background-repeat: no-repeat;

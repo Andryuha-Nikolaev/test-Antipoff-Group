@@ -1,7 +1,7 @@
 {
   "name": "test-antipoff-group",
   "version": "0.1.0",
-  "homepage": "https://andryuha-nikolaev.github.io/test-Antipoff-Group",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

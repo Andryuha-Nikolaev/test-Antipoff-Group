@@ -1,9 +1,11 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 import './Header.css';
 
 import userImg from '../../assets/img/header-user-img.png';
+import logout from '../../assets/img/header-logout.svg';
+import back from '../../assets/img/header-back.svg';
 
 function Header() {
   const { pathname } = useLocation();
@@ -13,12 +15,14 @@ function Header() {
         {pathname === '/' ? (
           ''
         ) : (
-          <button className="header__button header__button_back" type="button">
-            Назад
-          </button>
+          <Link to="/" className="header__button header__button_back">
+            <p className="header__button-text">Назад</p>
+            <img className="header__button-img" src={back} alt="кнопка назад" />
+          </Link>
         )}
         <button className="header__button header__button_logout" type="button">
-          Выход
+          <p className="header__button-text">Выход</p>
+          <img className="header__button-img" src={logout} alt="кнопка выйти" />
         </button>
       </div>
       {pathname === '/' ? (
