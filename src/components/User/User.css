@@ -1,0 +1,42 @@
+.user {
+  padding: 49px 188px 0;
+  min-height: 265px;
+  display: flex;
+  gap: 131px;
+}
+
+.user__description {
+  max-width: 630px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.user__contacts {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.user__contacts-item {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+}
+
+.user__tel-img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.user__email-img {
+  width: 21px;
+  height: 15px;
+  margin-right: 9.5px;
+}

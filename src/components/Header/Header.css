@@ -1,0 +1,101 @@
+.header {
+  padding: 0 80px;
+  min-height: 265px;
+  position: relative;
+  background-color: var(--header-bg-color);
+}
+
+.header__button-container {
+  padding: 31px 80px 0;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.header__button {
+  padding: 7px 15px;
+  box-sizing: border-box;
+  color: var(--button-text-color);
+  background-color: transparent;
+  border: 1px solid #f8f8f8;
+  border-radius: 8px;
+  min-height: 38px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.header__button_logout {
+  min-width: 81px;
+  margin-left: auto;
+}
+
+.header__button_back {
+  min-width: 79px;
+}
+
+.header__content {
+  margin: 0 auto;
+  padding: 64px 0;
+  text-align: center;
+  max-width: 846px;
+}
+
+.header__title {
+  margin-bottom: 16px;
+  color: var(--secondary-text-color);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 75px;
+}
+
+.header__description {
+  color: var(--secondary-text-color);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.header__user-content {
+  padding: 39px 108px;
+  display: flex;
+  align-items: center;
+}
+
+.header__user-img {
+  width: 187px;
+  height: 187px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header__user-info {
+  margin-left: 32px;
+}
+
+.header__user-name {
+  margin-bottom: 16px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 75px;
+  color: var(--secondary-text-color);
+}
+
+.header__user-job {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
+  color: var(--secondary-text-color);
+}

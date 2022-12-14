@@ -1,0 +1,50 @@
+.page {
+  background-color: #ffffff;
+  min-height: 100vh;
+
+  /* ------------------цвет фона------------------- */
+
+  /* общий фон */
+  --main-bg-color: #ffffff;
+
+  /* фон хедера */
+  --header-bg-color: #512689;
+
+  /* цвет активного лайка */
+  --like-bg-color: #512689;
+
+  /* ------------------цвет текста------------------- */
+
+  /* основной цвет текста */
+  --main-text-color: #151317;
+
+  /* вспомогательный цвет текста */
+  --secondary-text-color: #ffffff;
+
+  /* цвет текста кнопок */
+  --button-text-color: #f8f8f8;
+}
+
+.page__content {
+  margin: 0 auto;
+  font-family: 'Roboto', Arial, sans-serif;
+  color: var(--main-text-color);
+  max-width: 1440px;
+  min-width: 320px;
+  width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.inactive-button {
+  pointer-events: none;
+}

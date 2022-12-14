@@ -1,0 +1,33 @@
+.team {
+  padding: 48px 80px 69px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team__list {
+  width: 100%;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 305px);
+  gap: 20px;
+  justify-content: center;
+}
+
+.team__button {
+  width: 170px;
+  height: 40px;
+  margin-top: 56px;
+  background-color: transparent;
+  border: 1px solid #151317;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.team__button-image {
+  margin-left: 11.3px;
+}
