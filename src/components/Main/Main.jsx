@@ -1,11 +1,12 @@
 import React from 'react';
-
+import Header from '../Header/Header';
 import Team from '../Team/Team';
 
-function Main() {
+function Main({ logout, users, onCardClick }) {
   return (
     <main>
-      <Team />
+      <Header logout={logout} />
+      <Team users={users} onCardClick={onCardClick} />
     </main>
   );
 }

@@ -1,7 +1,9 @@
 import { checkResponse } from './utils';
 
-export const BASE_URL = 'https://api.movies-explorer.nomorepartiesxyz.ru';
+// export const BASE_URL = 'https://reqres.in/api';
+export const BASE_URL = 'http://localhost:3001';
 
+//регистрация
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
@@ -13,6 +15,7 @@ export const register = (name, email, password) => {
   }).then((res) => checkResponse(res));
 };
 
+//вход
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
@@ -63,11 +66,23 @@ export const setUserInfo = (data) => {
   }).then((res) => checkResponse(res));
 };
 
-export const getCards = () => {
-  return fetch(`${BASE_URL}/movies`, {
+//получение всех пользователей
+export const getUsers = () => {
+  return fetch(`${BASE_URL}/users`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      'Content-Type': 'application/json',
+    },
+  }).then((res) => checkResponse(res));
+};
+
+//получение конкретного пользователя
+export const getUser = (id) => {
+  return fetch(`${BASE_URL}/users/${id}`, {
+    method: 'GET',
+    headers: {
+      // Authorization: `Bearer ${localStorage.getItem('jwt')}`,
       'Content-Type': 'application/json',
     },
   }).then((res) => checkResponse(res));
