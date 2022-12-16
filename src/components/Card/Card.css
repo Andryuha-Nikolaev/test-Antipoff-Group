@@ -10,6 +10,10 @@
   cursor: pointer;
 }
 
+.card-container {
+  position: relative;
+}
+
 .card__image {
   width: 124px;
   height: 124px;
@@ -29,9 +33,15 @@
 }
 
 .card__like-button {
+  width: 30px;
+  height: 28px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
   background-color: transparent;
   border: none;
-  margin-left: auto;
-  margin-right: 20px;
+  /* margin-left: auto; */
+  /* margin-right: 20px; */
   cursor: pointer;
+  /* cursor: alias; */
 }

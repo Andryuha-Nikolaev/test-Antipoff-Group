@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, useHistory, useLocation, Redirect } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import './App.css';
 
 import * as api from '../../utils/MainApi';
@@ -103,6 +104,19 @@ function App() {
     setUser(card);
   }
 
+  function onCardLike(card) {
+    const isLiked = card.likes.some((i) => i === currentUser._id);
+    console.log(card.likes);
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setUsers((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   function logout() {
     setIsLoggedIn(false);
     localStorage.removeItem('jwt');
@@ -110,37 +124,40 @@ function App() {
   }
 
   return (
-    <div className="page">
-      <div className="page__content">
-        <Switch>
-          <Route path="/signin">
-            {!isLoggedIn ? <Login onAuthorize={handleAuthorize} /> : <Redirect to="/" />}
-          </Route>
-          <Route path="/signup">
-            {!isLoggedIn ? <Register onRegister={handleRegister} /> : <Redirect to="/" />}
-          </Route>
-          <ProtectedRoute
-            path="/"
-            exact
-            loggedIn={isLoggedIn}
-            component={Main}
-            logout={logout}
-            users={users}
-            onCardClick={onCardClick}></ProtectedRoute>
-          <ProtectedRoute
-            path="/user"
-            loggedIn={isLoggedIn}
-            component={User}
-            logout={logout}
-            users={users}
-            user={user}></ProtectedRoute>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <div className="page__content">
+          <Switch>
+            <Route path="/signin">
+              {!isLoggedIn ? <Login onAuthorize={handleAuthorize} /> : <Redirect to="/" />}
+            </Route>
+            <Route path="/signup">
+              {!isLoggedIn ? <Register onRegister={handleRegister} /> : <Redirect to="/" />}
+            </Route>
+            <ProtectedRoute
+              path="/"
+              exact
+              loggedIn={isLoggedIn}
+              component={Main}
+              logout={logout}
+              users={users}
+              onCardLike={onCardLike}
+              onCardClick={onCardClick}></ProtectedRoute>
+            <ProtectedRoute
+              path="/user"
+              loggedIn={isLoggedIn}
+              component={User}
+              logout={logout}
+              users={users}
+              user={user}></ProtectedRoute>
 
-          {/* <Route path="/*">
+            {/* <Route path="/*">
               <NotFound />
             </Route> */}
-        </Switch>
+          </Switch>
+        </div>
       </div>
-    </div>
+    </CurrentUserContext.Provider>
   );
 }
 

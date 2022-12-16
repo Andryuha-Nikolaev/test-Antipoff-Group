@@ -38,6 +38,17 @@ export const getContent = (token) => {
   }).then((res) => checkResponse(res));
 };
 
+//лайк-дизлайк
+export const changeLikeCardStatus = (cardId, isLiked) => {
+  return fetch(`${BASE_URL}/cards/${cardId}/likes`, {
+    method: `${!isLiked ? 'DELETE' : 'PUT'}`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      'Content-Type': 'application/json',
+    },
+  }).then((res) => checkResponse(res));
+};
+
 // метод делает запрос серверу и получает данные профиля
 export const getUserInfo = () => {
   return fetch(`${BASE_URL}/users/me`, {

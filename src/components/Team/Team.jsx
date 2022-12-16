@@ -4,7 +4,7 @@ import './Team.css';
 import buttonArrow from '../../assets/img/team-button-arrow.svg';
 import { Link } from 'react-router-dom';
 
-function Team({ users, onCardClick }) {
+function Team({ users, onCardClick, onCardLike }) {
   return (
     <section className="team">
       <ul className="team__list">
@@ -13,6 +13,7 @@ function Team({ users, onCardClick }) {
             key={card._id}
             card={card}
             onCardClick={onCardClick}
+            onCardLike={onCardLike}
             // onCardLike={onCardLike}
             // onCardDelete={onCardDelete}
           />
