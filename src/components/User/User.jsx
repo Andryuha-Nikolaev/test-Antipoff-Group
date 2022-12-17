@@ -7,12 +7,12 @@ import './User.css';
 import telImg from '../../assets/img/tel-img.svg';
 import emailImg from '../../assets/img/email-img.svg';
 
-function User({ logout, user, users }) {
+function User({ logout, user, users, onEditAvatar }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <>
-      <Header logout={logout} card={user} />
+      <Header logout={logout} card={user} onEditAvatar={onEditAvatar} />
       <section className="user">
         {/* {currentUser._id === user._id ? <p>яяяяяяя</p> : <p>не я</p>} */}
         <p className="user__description">

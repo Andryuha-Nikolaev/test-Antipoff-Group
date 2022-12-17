@@ -9,6 +9,7 @@ import Main from '../Main/Main';
 import User from '../User/User';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
+import EditAvatarPopup from '../Popup/EditAvatarPopup';
 
 function App() {
   const history = useHistory();
@@ -17,6 +18,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({});
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
   //Проверка токена и авторизация пользователя
   useEffect(() => {
@@ -59,7 +61,7 @@ function App() {
           console.log(err);
         });
     }
-  }, [isLoggedIn, history]);
+  }, [isLoggedIn, history, currentUser]);
 
   //регистрация пользователя
   function handleRegister({ name, email, password }) {
@@ -115,6 +117,26 @@ function App() {
       });
   }
 
+  function handleUpdateAvatar(newAvatar) {
+    setIsLoading(true);
+    api
+      .setUserAvatar(newAvatar)
+      .then((data) => {
+        setCurrentUser(data);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
+  function closeAllPopups() {
+    setIsEditAvatarPopupOpen(false);
+  }
+
   function logout() {
     setIsLoggedIn(false);
     localStorage.removeItem('jwt');
@@ -153,11 +175,18 @@ function App() {
             <ProtectedRoute
               path="/user"
               loggedIn={isLoggedIn}
+              onEditAvatar={setIsEditAvatarPopupOpen}
               component={User}
               logout={logout}
               users={users}
               user={user}></ProtectedRoute>
           </Switch>
+          <EditAvatarPopup
+            isOpen={isEditAvatarPopupOpen}
+            onClose={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar}
+            onLoading={isLoading}
+          />
         </div>
       </div>
     </CurrentUserContext.Provider>

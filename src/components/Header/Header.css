@@ -41,6 +41,37 @@
   min-width: 79px;
 }
 
+.header__avatar-container {
+  width: 187px;
+  height: 187px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.header__avatar-container:hover > .header__avatar-button {
+  visibility: visible;
+  opacity: 0.6;
+}
+
+.header__avatar-button {
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url('../../assets/img/avatar-button.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+}
+
 .header__content {
   margin: 0 auto;
   padding: 64px 0;
@@ -112,6 +143,17 @@
 
 .header__button-img {
   display: none;
+}
+
+@media screen and (max-width: 1279px) {
+  .header__user-name {
+    font-size: 44px;
+    line-height: 45px;
+  }
+  .header__title {
+    font-size: 44px;
+    line-height: 45px;
+  }
 }
 
 @media screen and (max-width: 1023px) {
@@ -190,7 +232,7 @@
     flex-direction: column;
   }
 
-  .header__user-img {
+  .profile__avatar-container {
     order: 2;
   }
 

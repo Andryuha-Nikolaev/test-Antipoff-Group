@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import './Team.css';
 import buttonArrow from '../../assets/img/team-button-arrow.svg';
-import { Link } from 'react-router-dom';
 
 function Team({ users, onCardClick, onCardLike }) {
   const [shownCards, setShownCards] = useState(0);
@@ -39,14 +38,7 @@ function Team({ users, onCardClick, onCardLike }) {
     <section className="team">
       <ul className="team__list">
         {users.slice(0, shownCards).map((card) => (
-          <Card
-            key={card._id}
-            card={card}
-            onCardClick={onCardClick}
-            onCardLike={onCardLike}
-            // onCardLike={onCardLike}
-            // onCardDelete={onCardDelete}
-          />
+          <Card key={card._id} card={card} onCardClick={onCardClick} onCardLike={onCardLike} />
         ))}
       </ul>
 

@@ -61,6 +61,20 @@ export const getUserInfo = () => {
   }).then((res) => checkResponse(res));
 };
 
+// метод изменяет аватар на сервере
+export const setUserAvatar = (data) => {
+  return fetch(`${BASE_URL}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      avatar: data.avatar,
+    }),
+  }).then((res) => checkResponse(res));
+};
+
 // метод изменяет данные профиля на сервере
 export const setUserInfo = (data) => {
   // console.log(data);
