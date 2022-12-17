@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, useHistory, useLocation, Redirect } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import './App.css';
 
 import * as api from '../../utils/MainApi';
-import Header from '../Header/Header';
 import Main from '../Main/Main';
 import User from '../User/User';
 import Register from '../Register/Register';
@@ -13,12 +12,11 @@ import Login from '../Login/Login';
 
 function App() {
   const history = useHistory();
-  const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({});
-  const path = location.pathname;
 
   //Проверка токена и авторизация пользователя
   useEffect(() => {
@@ -32,14 +30,13 @@ function App() {
             history.push('/');
             setIsLoggedIn(true);
           }
-
-          // history.push(path);
           history.push('/');
         })
         .catch((err) => {
           console.log(err);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -66,22 +63,21 @@ function App() {
 
   //регистрация пользователя
   function handleRegister({ name, email, password }) {
+    setIsLoading(true);
     api
       .register(name, email, password)
       .then((res) => {
-        console.log(res);
         localStorage.setItem('jwt', res.token);
-        // handleAuthorize({ email, password });
+        handleAuthorize({ email, password });
       })
       .catch((err) => {
-        // setIsSuccess(false);
         console.log(err);
       });
   }
 
   // авторизация пользователя
   function handleAuthorize({ email, password }) {
-    // setIsLoading(true);
+    setIsLoading(true);
     api
       .authorize(email, password)
       .then((res) => {
@@ -92,12 +88,15 @@ function App() {
         }
       })
       .catch((err) => {
-        // setIsSuccess(false);
         console.log(err);
       })
       .finally(() => {
-        // setIsLoading(false);
+        setIsLoading(false);
       });
+  }
+
+  function onAccountClick(user) {
+    setUser(currentUser);
   }
 
   function onCardClick(card) {
@@ -106,7 +105,6 @@ function App() {
 
   function onCardLike(card) {
     const isLiked = card.likes.some((i) => i === currentUser._id);
-    console.log(card.likes);
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
@@ -129,10 +127,18 @@ function App() {
         <div className="page__content">
           <Switch>
             <Route path="/signin">
-              {!isLoggedIn ? <Login onAuthorize={handleAuthorize} /> : <Redirect to="/" />}
+              {!isLoggedIn ? (
+                <Login onAuthorize={handleAuthorize} isLoading={isLoading} />
+              ) : (
+                <Redirect to="/" />
+              )}
             </Route>
             <Route path="/signup">
-              {!isLoggedIn ? <Register onRegister={handleRegister} /> : <Redirect to="/" />}
+              {!isLoggedIn ? (
+                <Register onRegister={handleRegister} isLoading={isLoading} />
+              ) : (
+                <Redirect to="/" />
+              )}
             </Route>
             <ProtectedRoute
               path="/"
@@ -141,6 +147,7 @@ function App() {
               component={Main}
               logout={logout}
               users={users}
+              onAccountClick={onAccountClick}
               onCardLike={onCardLike}
               onCardClick={onCardClick}></ProtectedRoute>
             <ProtectedRoute
@@ -150,10 +157,6 @@ function App() {
               logout={logout}
               users={users}
               user={user}></ProtectedRoute>
-
-            {/* <Route path="/*">
-              <NotFound />
-            </Route> */}
           </Switch>
         </div>
       </div>

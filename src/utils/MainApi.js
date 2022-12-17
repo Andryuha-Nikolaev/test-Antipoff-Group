@@ -1,7 +1,8 @@
 import { checkResponse } from './utils';
 
 // export const BASE_URL = 'https://reqres.in/api';
-export const BASE_URL = 'http://localhost:3001';
+// export const BASE_URL = 'http://localhost:3001';
+export const BASE_URL = 'http://domainname.andrey.nomoredomains.sbs/api';
 
 //регистрация
 export const register = (name, email, password) => {

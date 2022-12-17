@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import * as api from '../../utils/MainApi';
 import './User.css';
@@ -7,10 +8,13 @@ import telImg from '../../assets/img/tel-img.svg';
 import emailImg from '../../assets/img/email-img.svg';
 
 function User({ logout, user, users }) {
+  const currentUser = React.useContext(CurrentUserContext);
+
   return (
     <>
       <Header logout={logout} card={user} />
       <section className="user">
+        {/* {currentUser._id === user._id ? <p>яяяяяяя</p> : <p>не я</p>} */}
         <p className="user__description">
           Клиенты видят в нем эксперта по вопросам разработки комплексных решений финансовых
           продуктов, включая такие аспекты, как организационная структура, процессы, аналитика и

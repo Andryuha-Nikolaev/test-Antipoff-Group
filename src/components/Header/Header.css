@@ -17,12 +17,19 @@
 .header__button {
   padding: 7px 15px;
   box-sizing: border-box;
-
   background-color: transparent;
   border: 1px solid #f8f8f8;
   border-radius: 8px;
   min-height: 38px;
   cursor: pointer;
+}
+
+.header__button:active {
+  text-decoration: none;
+}
+
+.header__button:hover {
+  opacity: 0.6;
 }
 
 .header__button_logout {
@@ -206,5 +213,7 @@
 
   .header__button-img {
     display: block;
+    max-width: 18px;
+    max-height: 18px;
   }
 }

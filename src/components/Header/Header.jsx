@@ -3,27 +3,36 @@ import { useLocation, Link } from 'react-router-dom';
 
 import './Header.css';
 
-import userImg from '../../assets/img/header-user-img.png';
 import logoutImg from '../../assets/img/header-logout.svg';
-import back from '../../assets/img/header-back.svg';
+import backImg from '../../assets/img/header-back.svg';
+import accountImg from '../../assets/img/header-account.svg';
 
-function Header({ card, logout }) {
+function Header({ card, logout, onAccountClick }) {
   const { pathname } = useLocation();
 
   function handleLogout() {
     logout();
   }
+
+  function handleAccount() {
+    onAccountClick(card);
+  }
+
   return (
     <header className="header">
       <div className="header__button-container">
         {pathname === '/' ? (
-          ''
+          <Link to="/user" className="header__button header__button_back" onClick={handleAccount}>
+            <p className="header__button-text">Аккаунт</p>
+            <img className="header__button-img" src={accountImg} alt="кнопка выйти" />
+          </Link>
         ) : (
           <Link to="/" className="header__button header__button_back">
             <p className="header__button-text">Назад</p>
-            <img className="header__button-img" src={back} alt="кнопка назад" />
+            <img className="header__button-img" src={backImg} alt="кнопка назад" />
           </Link>
         )}
+
         <button
           className="header__button header__button_logout"
           type="button"

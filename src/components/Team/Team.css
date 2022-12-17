@@ -28,8 +28,40 @@
   cursor: pointer;
 }
 
+.team__button:hover {
+  opacity: 0.6;
+}
+
 .team__button-image {
   margin-left: 11.3px;
+}
+
+.team__button-image_rotate {
+  transform: rotate(180deg);
+}
+
+.team__button_hidden {
+  visibility: hidden;
+  pointer-events: none;
+  display: none;
+}
+
+@media screen and (max-width: 1460px) {
+  .team__list {
+    grid-template-columns: repeat(3, 305px);
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .team__list {
+    grid-template-columns: repeat(auto-fit, 305px);
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .team__list {
+    grid-template-columns: repeat(1, 305px);
+  }
 }
 
 @media screen and (max-width: 576px) {

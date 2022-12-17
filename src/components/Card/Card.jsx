@@ -8,8 +8,6 @@ import cardLikeActive from '../../assets/img/card-like-active.svg';
 function Card({ card, onCardClick, onCardLike }) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  console.log(currentUser);
-
   const isLiked = card.likes.some((i) => i === currentUser._id);
 
   function handleCardClick() {
