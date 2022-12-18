@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import './User.css';
 import telImg from '../../assets/img/tel-img.svg';
 import emailImg from '../../assets/img/email-img.svg';
 
-function User({ logout, user, users, onEditAvatar }) {
+function User({ logout, user, onEditAvatar }) {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
       <Header logout={logout} card={user} onEditAvatar={onEditAvatar} />

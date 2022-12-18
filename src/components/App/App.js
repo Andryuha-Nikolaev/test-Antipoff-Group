@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentUser } from '../../redux/slices/userSlice';
+import { setCurrentUser, setUsers } from '../../redux/slices/userSlice';
 import { Route, Switch, useHistory, Redirect, useLocation } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
@@ -17,14 +17,13 @@ function App() {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
   const [userCard, setUserCard] = useState({});
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
   const currentUser = useSelector((state) => state.user.currentUser);
+  const users = useSelector((state) => state.user.users);
   const dispatch = useDispatch();
-
-  console.log(currentUser);
 
   //Проверка токена и авторизация пользователя
   useEffect(() => {
@@ -61,7 +60,7 @@ function App() {
       api
         .getUsers()
         .then((cardsData) => {
-          setUsers(cardsData);
+          dispatch(setUsers(cardsData));
         })
         .catch((err) => {
           console.log(err);
@@ -117,7 +116,8 @@ function App() {
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setUsers((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+        const newUsers = users.map((c) => (c._id === card._id ? newCard : c));
+        dispatch(setUsers(newUsers));
       })
       .catch((err) => {
         console.log(err);
@@ -174,7 +174,7 @@ function App() {
             loggedIn={isLoggedIn}
             component={Main}
             logout={logout}
-            users={users}
+            // users={users}
             onAccountClick={onAccountClick}
             onCardLike={onCardLike}
             onCardClick={onCardClick}></ProtectedRoute>
@@ -184,7 +184,6 @@ function App() {
             onEditAvatar={setIsEditAvatarPopupOpen}
             component={User}
             logout={logout}
-            users={users}
             user={userCard}></ProtectedRoute>
         </Switch>
         <EditAvatarPopup

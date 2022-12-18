@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Card from '../Card/Card';
 import './Team.css';
 import buttonArrow from '../../assets/img/team-button-arrow.svg';
 
-function Team({ users, onCardClick, onCardLike }) {
+function Team({ onCardClick, onCardLike }) {
+  const users = useSelector((state) => state.user.users);
+
   const [shownCards, setShownCards] = useState(0);
   const [defaultCards, setDefaultCards] = useState(0);
 
