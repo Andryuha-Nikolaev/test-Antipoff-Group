@@ -1,0 +1,83 @@
+.team {
+  padding: 48px 80px 69px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team__list {
+  width: 100%;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 305px);
+  gap: 20px;
+  justify-content: center;
+}
+
+.team__button {
+  width: 170px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 56px;
+  background-color: transparent;
+  border: 1px solid #151317;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--main-text-color);
+}
+
+.team__button-text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--main-text-color);
+}
+
+.team__button:hover {
+  opacity: 0.6;
+}
+
+.team__button-image {
+  margin-left: 11.3px;
+}
+
+.team__button-image_rotate {
+  transform: rotate(180deg);
+}
+
+.team__button_hidden {
+  visibility: hidden;
+  pointer-events: none;
+  display: none;
+}
+
+@media screen and (max-width: 1460px) {
+  .team__list {
+    grid-template-columns: repeat(3, 305px);
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .team__list {
+    grid-template-columns: repeat(auto-fit, 305px);
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .team__list {
+    grid-template-columns: repeat(1, 305px);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .team {
+    padding: 32px 0px;
+  }
+
+  .team__button {
+    margin-top: 32px;
+  }
+}
