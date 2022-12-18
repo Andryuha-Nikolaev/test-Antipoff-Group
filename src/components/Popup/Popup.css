@@ -104,7 +104,7 @@
   .popup__close-button {
     width: 20px;
     height: 20px;
-    right: 0;
+    right: 16px;
   }
 
   .popup__close-button:before {

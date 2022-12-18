@@ -17,7 +17,6 @@ function App() {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  // const [users, setUsers] = useState([]);
   const [userCard, setUserCard] = useState({});
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
@@ -174,7 +173,6 @@ function App() {
             loggedIn={isLoggedIn}
             component={Main}
             logout={logout}
-            // users={users}
             onAccountClick={onAccountClick}
             onCardLike={onCardLike}
             onCardClick={onCardClick}></ProtectedRoute>

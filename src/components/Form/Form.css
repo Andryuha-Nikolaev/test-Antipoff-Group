@@ -111,6 +111,17 @@
   background-color: var(--input-bg-color);
 }
 
+.form__input-img {
+  position: absolute;
+  right: 6px;
+  top: 42px;
+  cursor: pointer;
+}
+
+.form__input-img:hover {
+  opacity: 0.6;
+}
+
 .form__input_error {
   border: 1px solid #ff6161;
 }

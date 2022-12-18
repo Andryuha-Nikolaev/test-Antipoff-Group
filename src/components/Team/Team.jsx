@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import useScreenWidth from '../../hooks/useScreenWidth';
 import Card from '../Card/Card';
 import './Team.css';
 import buttonArrow from '../../assets/img/team-button-arrow.svg';
@@ -7,18 +8,19 @@ import buttonArrow from '../../assets/img/team-button-arrow.svg';
 function Team({ onCardClick, onCardLike }) {
   const users = useSelector((state) => state.user.users);
 
-  const [shownCards, setShownCards] = useState(0);
   const [defaultCards, setDefaultCards] = useState(0);
+  const [shownCards, setShownCards] = useState(0);
+
+  const screenWidth = useScreenWidth();
 
   function shownCount() {
-    const display = window.innerWidth;
-    if (display > 1460) {
+    if (screenWidth > 1460) {
       setShownCards(8);
       setDefaultCards(8);
-    } else if (display > 810) {
+    } else if (screenWidth > 810) {
       setShownCards(6);
       setDefaultCards(6);
-    } else if (display < 810) {
+    } else if (screenWidth < 810) {
       setShownCards(4);
       setDefaultCards(4);
     }
@@ -26,12 +28,8 @@ function Team({ onCardClick, onCardLike }) {
 
   useEffect(() => {
     shownCount();
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('resize', shownCount);
-    return () => window.removeEventListener('resize', shownCount);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [screenWidth, users]);
 
   const teamButtonClassName = `team__button ${
     users.length <= defaultCards ? 'team__button_hidden' : ''
@@ -50,7 +48,7 @@ function Team({ onCardClick, onCardLike }) {
           className={teamButtonClassName}
           type="button"
           onClick={() => setShownCards(users.length)}>
-          Показать еще
+          <p className="team__button-text">Показать еще</p>
           <img className="team__button-image" src={buttonArrow} alt="кнопка показать еще" />
         </button>
       ) : (

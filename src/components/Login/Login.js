@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../Form/Form.css';
 import Form from '../Form/Form';
 import useForm from '../../hooks/useForm';
 import { EMAIL_REGEX } from '../../utils/constants';
+import passwordImg from '../../assets/img/input-password.svg';
 
 function Login({ onAuthorize, isLoading }) {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  function handlePassword() {
+    setIsPasswordVisible(!isPasswordVisible);
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -47,10 +54,18 @@ function Login({ onAuthorize, isLoading }) {
           name="password"
           className={errors.password ? 'form__input_error form__input' : 'form__input'}
           id="password-input"
-          type="password"
+          type={isPasswordVisible ? 'text' : 'password'}
           required
           onChange={handleChange}
           value={enteredValues.password || ''}
+        />
+        <img
+          className="form__input-img"
+          src={passwordImg}
+          alt="показать пароль"
+          onClick={() => {
+            handlePassword();
+          }}
         />
         <span className="form__input-error">{errors.password}</span>
       </label>

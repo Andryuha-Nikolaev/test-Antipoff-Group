@@ -17,23 +17,25 @@
 .team__button {
   width: 170px;
   height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 56px;
   background-color: transparent;
   border: 1px solid #151317;
   border-radius: 8px;
+  cursor: pointer;
+}
+
+.team__button-text {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  cursor: pointer;
 }
 
 .team__button:hover {
   opacity: 0.6;
-}
-
-.team__button:active {
-  color: var(--main-text-color);
 }
 
 .team__button-image {
