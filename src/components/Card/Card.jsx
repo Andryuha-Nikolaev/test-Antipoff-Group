@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
+// import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { useSelector } from 'react-redux';
 import './Card.css';
 import cardLike from '../../assets/img/card-like.svg';
 import cardLikeActive from '../../assets/img/card-like-active.svg';
 
 function Card({ card, onCardClick, onCardLike }) {
-  const currentUser = React.useContext(CurrentUserContext);
+  // const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useSelector((state) => state.user.currentUser);
 
   const isLiked = card.likes.some((i) => i === currentUser._id);
 

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
+// import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { useSelector } from 'react-redux';
 
 import './Header.css';
 
@@ -9,8 +10,12 @@ import backImg from '../../assets/img/header-back.svg';
 import accountImg from '../../assets/img/header-account.svg';
 
 function Header({ card, logout, onAccountClick, onEditAvatar }) {
-  const currentUser = React.useContext(CurrentUserContext);
+  // const currentUser = React.useContext(CurrentUserContext);
   const { pathname } = useLocation();
+
+  const currentUser = useSelector((state) => state.user.currentUser);
+
+  console.log(currentUser);
 
   function handleLogout() {
     logout();

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { decrement, increment } from '../../redux/slices/userSlice';
-import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
+import { setCurrentUser } from '../../redux/slices/userSlice';
+import { Route, Switch, useHistory, Redirect, useLocation } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
 import './App.css';
 
 import * as api from '../../utils/MainApi';
@@ -15,15 +14,17 @@ import EditAvatarPopup from '../Popup/EditAvatarPopup';
 
 function App() {
   const history = useHistory();
+  const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({});
+  const [userCard, setUserCard] = useState({});
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
-  const count = useSelector((state) => state.user.value);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
+
+  console.log(currentUser);
 
   //Проверка токена и авторизация пользователя
   useEffect(() => {
@@ -51,7 +52,7 @@ function App() {
       api
         .getUserInfo()
         .then((profileInfo) => {
-          setCurrentUser(profileInfo);
+          dispatch(setCurrentUser(profileInfo));
         })
         .catch((err) => {
           console.log(err);
@@ -66,7 +67,8 @@ function App() {
           console.log(err);
         });
     }
-  }, [isLoggedIn, history, currentUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn, history, location]);
 
   //регистрация пользователя
   function handleRegister({ name, email, password }) {
@@ -103,11 +105,11 @@ function App() {
   }
 
   function onAccountClick(user) {
-    setUser(currentUser);
+    setUserCard(currentUser);
   }
 
   function onCardClick(card) {
-    setUser(card);
+    setUserCard(card);
   }
 
   function onCardLike(card) {
@@ -127,7 +129,7 @@ function App() {
     api
       .setUserAvatar(newAvatar)
       .then((data) => {
-        setCurrentUser(data);
+        dispatch(setCurrentUser(data));
         closeAllPopups();
       })
       .catch((err) => {
@@ -149,60 +151,50 @@ function App() {
   }
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
-        <div className="page__content">
-          <button aria-label="Increment value" onClick={() => dispatch(increment())}>
-            Increment
-          </button>
-          <span>{count}</span>
-          <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
-            Decrement
-          </button>
-
-          <Switch>
-            <Route path="/signin">
-              {!isLoggedIn ? (
-                <Login onAuthorize={handleAuthorize} isLoading={isLoading} />
-              ) : (
-                <Redirect to="/" />
-              )}
-            </Route>
-            <Route path="/signup">
-              {!isLoggedIn ? (
-                <Register onRegister={handleRegister} isLoading={isLoading} />
-              ) : (
-                <Redirect to="/" />
-              )}
-            </Route>
-            <ProtectedRoute
-              path="/"
-              exact
-              loggedIn={isLoggedIn}
-              component={Main}
-              logout={logout}
-              users={users}
-              onAccountClick={onAccountClick}
-              onCardLike={onCardLike}
-              onCardClick={onCardClick}></ProtectedRoute>
-            <ProtectedRoute
-              path="/user"
-              loggedIn={isLoggedIn}
-              onEditAvatar={setIsEditAvatarPopupOpen}
-              component={User}
-              logout={logout}
-              users={users}
-              user={user}></ProtectedRoute>
-          </Switch>
-          <EditAvatarPopup
-            isOpen={isEditAvatarPopupOpen}
-            onClose={closeAllPopups}
-            onUpdateAvatar={handleUpdateAvatar}
-            onLoading={isLoading}
-          />
-        </div>
+    <div className="page">
+      <div className="page__content">
+        <Switch>
+          <Route path="/signin">
+            {!isLoggedIn ? (
+              <Login onAuthorize={handleAuthorize} isLoading={isLoading} />
+            ) : (
+              <Redirect to="/" />
+            )}
+          </Route>
+          <Route path="/signup">
+            {!isLoggedIn ? (
+              <Register onRegister={handleRegister} isLoading={isLoading} />
+            ) : (
+              <Redirect to="/" />
+            )}
+          </Route>
+          <ProtectedRoute
+            path="/"
+            exact
+            loggedIn={isLoggedIn}
+            component={Main}
+            logout={logout}
+            users={users}
+            onAccountClick={onAccountClick}
+            onCardLike={onCardLike}
+            onCardClick={onCardClick}></ProtectedRoute>
+          <ProtectedRoute
+            path="/user"
+            loggedIn={isLoggedIn}
+            onEditAvatar={setIsEditAvatarPopupOpen}
+            component={User}
+            logout={logout}
+            users={users}
+            user={userCard}></ProtectedRoute>
+        </Switch>
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
+          onLoading={isLoading}
+        />
       </div>
-    </CurrentUserContext.Provider>
+    </div>
   );
 }
 
