@@ -32,6 +32,10 @@
   opacity: 0.6;
 }
 
+.team__button:active {
+  color: var(--main-text-color);
+}
+
 .team__button-image {
   margin-left: 11.3px;
 }

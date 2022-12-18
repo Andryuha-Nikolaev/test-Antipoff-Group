@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { decrement, increment } from '../../redux/slices/userSlice';
 import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
@@ -19,6 +21,9 @@ function App() {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({});
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+
+  const count = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
 
   //Проверка токена и авторизация пользователя
   useEffect(() => {
@@ -147,6 +152,14 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__content">
+          <button aria-label="Increment value" onClick={() => dispatch(increment())}>
+            Increment
+          </button>
+          <span>{count}</span>
+          <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
+            Decrement
+          </button>
+
           <Switch>
             <Route path="/signin">
               {!isLoggedIn ? (
