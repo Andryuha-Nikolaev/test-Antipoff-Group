@@ -1,5 +1,4 @@
 .form__container {
-  /* padding: 253px 0; */
   padding: 16px;
   margin: 0 auto;
   margin-top: 253px;
@@ -12,7 +11,6 @@
 }
 
 .form__title {
-  /* margin: 0; */
   margin-bottom: 16px;
   font-style: normal;
   font-weight: 400;
@@ -23,14 +21,11 @@
 .form {
   display: flex;
   flex-direction: column;
-  /* min-height: 448px; */
   width: 100%;
 }
 
 .form__button-save {
-  /* margin-top: auto; */
   margin-top: 8px;
-  /* width: 396px; */
   height: 48px;
   border: none;
   background-color: var(--button-bg-color);
@@ -98,7 +93,6 @@
   padding-left: 16px;
   margin-top: 8px;
   height: 48px;
-  /* padding: 5px 0 10px 0; */
   width: 100%;
   font-style: normal;
   font-weight: 400;

@@ -29,7 +29,7 @@ function Team({ onCardClick, onCardLike }) {
   useEffect(() => {
     shownCount();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [screenWidth, users]);
+  }, [screenWidth]);
 
   const teamButtonClassName = `team__button ${
     users.length <= defaultCards ? 'team__button_hidden' : ''

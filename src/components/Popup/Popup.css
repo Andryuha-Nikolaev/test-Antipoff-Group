@@ -35,13 +35,6 @@
   align-items: center;
 }
 
-/* @media screen and (max-width: 767px) {
-  .popup__container {
-    max-width: 282px;
-    padding: 25px 22px;
-  }
-} */
-
 .form-popup {
   display: flex;
   flex-direction: column;
@@ -58,14 +51,6 @@
   font-size: 20px;
   line-height: 23px;
 }
-
-/* @media (max-width: 767px) {
-  .form__popup-text {
-    margin-bottom: 65px;
-    font-size: 18px;
-    line-height: 22px;
-  }
-} */
 
 .popup__close-button {
   position: absolute;

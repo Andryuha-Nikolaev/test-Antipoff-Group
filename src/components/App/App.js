@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Switch, useHistory, Redirect, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentUser, setUsers } from '../../redux/slices/userSlice';
-import { Route, Switch, useHistory, Redirect, useLocation } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+
 import './App.css';
 
 import * as api from '../../utils/MainApi';
@@ -30,7 +31,6 @@ function App() {
     if (jwt) {
       api
         .getContent(jwt)
-
         .then((res) => {
           if (res) {
             history.push('/');

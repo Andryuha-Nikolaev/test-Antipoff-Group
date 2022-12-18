@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.86a6fd9b.css",
-    "main.js": "./static/js/main.35c06ea1.js",
+    "main.css": "./static/css/main.8f25ddf6.css",
+    "main.js": "./static/js/main.059f6e19.js",
     "static/media/Roboto-Regular.ttf": "./static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
     "static/media/header-account.svg": "./static/media/header-account.e99043daf4cb13d720285b7b33d4c9fc.svg",
     "static/media/header-logout.svg": "./static/media/header-logout.e3febb0a52b2929a9f47445fe0a2301d.svg",
@@ -13,11 +13,11 @@
     "static/media/email-img.svg": "./static/media/email-img.0bad0d25ea2b0cfb6c5e6f206395260e.svg",
     "static/media/card-like.svg": "./static/media/card-like.87b226b3e208265a5a0661cbd1a16dc8.svg",
     "static/media/card-like-active.svg": "./static/media/card-like-active.4ce90f45a3feb6e27018788c95bba45b.svg",
-    "main.86a6fd9b.css.map": "./static/css/main.86a6fd9b.css.map",
-    "main.35c06ea1.js.map": "./static/js/main.35c06ea1.js.map"
+    "main.8f25ddf6.css.map": "./static/css/main.8f25ddf6.css.map",
+    "main.059f6e19.js.map": "./static/js/main.059f6e19.js.map"
   },
   "entrypoints": [
-    "static/css/main.86a6fd9b.css",
-    "static/js/main.35c06ea1.js"
+    "static/css/main.8f25ddf6.css",
+    "static/js/main.059f6e19.js"
   ]
 }
