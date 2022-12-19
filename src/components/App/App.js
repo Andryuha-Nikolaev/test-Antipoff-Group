@@ -21,6 +21,8 @@ function App() {
   const [userCard, setUserCard] = useState({});
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
+  const path = location.pathname;
+
   const currentUser = useSelector((state) => state.user.currentUser);
   const users = useSelector((state) => state.user.users);
   const dispatch = useDispatch();
@@ -36,7 +38,8 @@ function App() {
             history.push('/');
             setIsLoggedIn(true);
           }
-          history.push('/');
+          // history.push('/');
+          history.push(path);
         })
         .catch((err) => {
           console.log(err);
@@ -100,10 +103,6 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       });
-  }
-
-  function onAccountClick(user) {
-    setUserCard(currentUser);
   }
 
   function onCardClick(card) {
@@ -173,11 +172,10 @@ function App() {
             loggedIn={isLoggedIn}
             component={Main}
             logout={logout}
-            onAccountClick={onAccountClick}
             onCardLike={onCardLike}
             onCardClick={onCardClick}></ProtectedRoute>
           <ProtectedRoute
-            path="/user"
+            path="/user/:id"
             loggedIn={isLoggedIn}
             onEditAvatar={setIsEditAvatarPopupOpen}
             component={User}

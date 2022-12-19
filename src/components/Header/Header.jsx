@@ -17,15 +17,15 @@ function Header({ card, logout, onAccountClick, onEditAvatar }) {
     logout();
   }
 
-  function handleAccount() {
-    onAccountClick(card);
-  }
-
   return (
     <header className="header">
       <div className="header__button-container">
         {pathname === '/' ? (
-          <Link to="/user" className="header__button header__button_back" onClick={handleAccount}>
+          <Link
+            to={`/user/${currentUser._id}`}
+            className="header__button header__button_back"
+            // onClick={handleAccount}
+          >
             <p className="header__button-text">Аккаунт</p>
             <img className="header__button-img" src={accountImg} alt="кнопка выйти" />
           </Link>
@@ -57,11 +57,7 @@ function Header({ card, logout, onAccountClick, onEditAvatar }) {
           <div className="header__avatar-container">
             {currentUser._id === card._id ? (
               <>
-                <img
-                  className="header__user-img"
-                  src={currentUser.avatar}
-                  alt="аватар пользователя"
-                />
+                <img className="header__user-img" src={currentUser.avatar} alt="" />
                 <button
                   type="button"
                   className="header__avatar-button"
@@ -72,7 +68,7 @@ function Header({ card, logout, onAccountClick, onEditAvatar }) {
                   }}></button>
               </>
             ) : (
-              <img className="header__user-img" src={card.avatar} alt="аватар пользователя" />
+              <img className="header__user-img" src={card.avatar} alt="" />
             )}
           </div>
           <div className="header__user-info">

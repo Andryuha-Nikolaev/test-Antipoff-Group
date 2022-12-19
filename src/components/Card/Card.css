@@ -7,7 +7,6 @@
   align-items: center;
   box-shadow: 0px 0.996045px 3.98418px rgba(51, 51, 51, 0.15);
   border-radius: 10px;
-  cursor: pointer;
   color: var(--main-text-color);
   text-decoration: none;
 }
@@ -16,8 +15,18 @@
   opacity: 0.8;
 }
 
-.card-container {
+.card__container {
   position: relative;
+}
+
+.card__link {
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .card__image {
@@ -47,6 +56,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  z-index: 99;
 }
 
 .card__like-button:hover {

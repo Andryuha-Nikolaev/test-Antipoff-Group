@@ -1,15 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import * as api from '../../utils/MainApi';
 import Header from '../Header/Header';
 import './User.css';
 import telImg from '../../assets/img/tel-img.svg';
 import emailImg from '../../assets/img/email-img.svg';
 
-function User({ logout, user, onEditAvatar }) {
+function User({ logout, onEditAvatar }) {
   const { pathname } = useLocation();
+
+  const [user, setUser] = useState({});
+
+  const currentUrl = document.location.pathname.slice(6);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    api
+      .getUser(currentUrl)
+      .then((profileInfo) => {
+        setUser(profileInfo);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   return (

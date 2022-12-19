@@ -110,6 +110,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: var(--input-bg-color);
 }
 
 .header__user-info {

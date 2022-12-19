@@ -39,7 +39,7 @@ function Team({ onCardClick, onCardLike }) {
     <section className="team">
       <ul className="team__list">
         {users.slice(0, shownCards).map((card) => (
-          <Card key={card._id} card={card} onCardClick={onCardClick} onCardLike={onCardLike} />
+          <Card key={card._id} card={card} onCardLike={onCardLike} />
         ))}
       </ul>
 
