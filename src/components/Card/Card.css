@@ -1,12 +1,12 @@
 .card {
   width: 305px;
-  height: 263px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   align-items: center;
-  box-shadow: 0px 0.996045px 3.98418px rgba(51, 51, 51, 0.15);
-  border-radius: 10px;
+  /* box-shadow: 0px 0.996045px 3.98418px rgba(51, 51, 51, 0.15);
+  border-radius: 10px; */
   color: var(--main-text-color);
   text-decoration: none;
 }
@@ -16,7 +16,11 @@
 }
 
 .card__container {
+  width: 305px;
+  height: 263px;
   position: relative;
+  box-shadow: 0px 0.996045px 3.98418px rgba(51, 51, 51, 0.15);
+  border-radius: 10px;
 }
 
 .card__link {

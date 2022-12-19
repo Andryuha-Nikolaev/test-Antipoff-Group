@@ -16,11 +16,14 @@ function Card({ card, onCardLike }) {
 
   return (
     <div className="card__container">
-      <Link className="card__link" to={`/user/${card._id}`}></Link>
-      <div className="card">
+      <Link className="card" to={`/user/${card._id}`}>
         <img className="card__image" alt={card.name} src={card.avatar} />
         <h2 className="card__text">{card.name}</h2>
-      </div>
+      </Link>
+      {/* <div className="card">
+        <img className="card__image" alt={card.name} src={card.avatar} />
+        <h2 className="card__text">{card.name}</h2>
+      </div> */}
       <button
         className="card__like-button"
         type="button"
