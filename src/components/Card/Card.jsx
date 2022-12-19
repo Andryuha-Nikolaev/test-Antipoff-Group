@@ -20,10 +20,6 @@ function Card({ card, onCardLike }) {
         <img className="card__image" alt={card.name} src={card.avatar} />
         <h2 className="card__text">{card.name}</h2>
       </Link>
-      {/* <div className="card">
-        <img className="card__image" alt={card.name} src={card.avatar} />
-        <h2 className="card__text">{card.name}</h2>
-      </div> */}
       <button
         className="card__like-button"
         type="button"
