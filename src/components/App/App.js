@@ -12,6 +12,7 @@ import User from '../User/User';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import EditAvatarPopup from '../Popup/EditAvatarPopup';
+import NotFound from '../NotFound/NotFound';
 
 function App() {
   const history = useHistory();
@@ -181,6 +182,9 @@ function App() {
             component={User}
             logout={logout}
             user={userCard}></ProtectedRoute>
+          <Route path="*">
+            <NotFound />
+          </Route>
         </Switch>
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}

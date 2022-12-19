@@ -23,7 +23,7 @@ function User({ logout, onEditAvatar }) {
       })
       .catch((err) => {
         console.log(err);
-        history.push('../');
+        history.push('/*');
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
