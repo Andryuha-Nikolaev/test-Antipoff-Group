@@ -10,6 +10,7 @@ function Team({ onCardClick, onCardLike }) {
 
   const [defaultCards, setDefaultCards] = useState(0);
   const [shownCards, setShownCards] = useState(0);
+  const [showAll, setShowAll] = useState(false);
 
   const screenWidth = useScreenWidth();
 
@@ -26,8 +27,33 @@ function Team({ onCardClick, onCardLike }) {
     }
   }
 
-  useEffect(() => {
+  function defaultCardsCount() {
+    if (screenWidth > 1460) {
+      setDefaultCards(8);
+    } else if (screenWidth > 810) {
+      setDefaultCards(6);
+    } else if (screenWidth < 810) {
+      setDefaultCards(4);
+    }
+  }
+
+  function showAllClick() {
+    setShownCards(users.length);
+    setShowAll(true);
+  }
+
+  function rollUpClick() {
+    setShowAll(false);
     shownCount();
+  }
+
+  useEffect(() => {
+    if (showAll) {
+      defaultCardsCount();
+    } else {
+      shownCount();
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [screenWidth]);
 
@@ -44,21 +70,18 @@ function Team({ onCardClick, onCardLike }) {
       </ul>
 
       {users.length > shownCards ? (
-        <button
-          className={teamButtonClassName}
-          type="button"
-          onClick={() => setShownCards(users.length)}>
+        <button className={teamButtonClassName} type="button" onClick={() => showAllClick()}>
           <p className="team__button-text">Показать еще</p>
           <img className="team__button-image" src={buttonArrow} alt="кнопка показать еще" />
         </button>
       ) : (
-        <button className={teamButtonClassName} type="button" onClick={() => shownCount()}>
+        <button className={teamButtonClassName} type="button" onClick={() => rollUpClick()}>
           Свернуть
           <img
             className="team__button-image team__button-image_rotate"
             src={buttonArrow}
             alt="кнопка свернуть"
-            onClick={() => shownCount()}
+            onClick={() => rollUpClick()}
           />
         </button>
       )}
