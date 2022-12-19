@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setShowAll } from '../../redux/slices/userSlice';
 import useScreenWidth from '../../hooks/useScreenWidth';
 import Card from '../Card/Card';
 import './Team.css';
 import buttonArrow from '../../assets/img/team-button-arrow.svg';
 
-function Team({ onCardClick, onCardLike }) {
+function Team({ onCardLike }) {
   const users = useSelector((state) => state.user.users);
 
   const [defaultCards, setDefaultCards] = useState(0);
   const [shownCards, setShownCards] = useState(0);
-  const [showAll, setShowAll] = useState(false);
+
+  const showAll = useSelector((state) => state.user.showAll);
+  const dispatch = useDispatch();
 
   const screenWidth = useScreenWidth();
 
@@ -39,16 +42,17 @@ function Team({ onCardClick, onCardLike }) {
 
   function showAllClick() {
     setShownCards(users.length);
-    setShowAll(true);
+    dispatch(setShowAll(true));
   }
 
   function rollUpClick() {
-    setShowAll(false);
+    dispatch(setShowAll(false));
     shownCount();
   }
 
   useEffect(() => {
     if (showAll) {
+      setShownCards(users.length);
       defaultCardsCount();
     } else {
       shownCount();

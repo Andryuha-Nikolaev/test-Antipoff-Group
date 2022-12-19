@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import * as api from '../../utils/MainApi';
 import Header from '../Header/Header';
 import './User.css';
@@ -7,6 +7,7 @@ import telImg from '../../assets/img/tel-img.svg';
 import emailImg from '../../assets/img/email-img.svg';
 
 function User({ logout, onEditAvatar }) {
+  const history = useHistory();
   const { pathname } = useLocation();
 
   const [user, setUser] = useState({});
@@ -22,6 +23,7 @@ function User({ logout, onEditAvatar }) {
       })
       .catch((err) => {
         console.log(err);
+        history.push('../');
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);

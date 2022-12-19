@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   currentUser: {},
   users: [],
+  showAll: false,
 };
 
 export const userSlice = createSlice({
@@ -15,10 +16,13 @@ export const userSlice = createSlice({
     setUsers(state, action) {
       state.users = action.payload;
     },
+    setShowAll(state, action) {
+      state.showAll = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setCurrentUser, setUsers } = userSlice.actions;
+export const { setCurrentUser, setUsers, setShowAll } = userSlice.actions;
 
 export default userSlice.reducer;
