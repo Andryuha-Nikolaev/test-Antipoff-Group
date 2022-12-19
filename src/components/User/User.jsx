@@ -12,18 +12,18 @@ function User({ logout, onEditAvatar }) {
 
   const [user, setUser] = useState({});
 
-  const currentUrl = document.location.pathname.slice(6);
+  // const currentUrl = document.location.pathname.slice(6);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     api
-      .getUser(currentUrl)
+      .getUser(document.location.pathname.slice(6))
       .then((profileInfo) => {
         setUser(profileInfo);
       })
       .catch((err) => {
         console.log(err);
-        history.push('/*');
+        history.push('/not-found');
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
