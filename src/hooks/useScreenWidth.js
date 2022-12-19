@@ -18,7 +18,7 @@ export default function useScreenWidth() {
         resizeTimer = setTimeout(() => {
           resizeTimer = null;
           handleScreenResize();
-        }, 0); // 1 кадр в секунду
+        }, 1000); // 1 кадр в секунду
       }
     }
 
