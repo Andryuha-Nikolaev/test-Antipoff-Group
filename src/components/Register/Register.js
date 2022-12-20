@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Form/Form.css';
 import Form from '../Form/Form';
 import useForm from '../../hooks/useForm';
@@ -8,6 +8,15 @@ import passwordImg from '../../assets/img/input-password.svg';
 function Register({ onRegister, isLoading }) {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [passSimilar, setPassSimilar] = useState(false);
+
+  useEffect(() => {
+    if (enteredValues.password !== enteredValues.confirm) {
+      setPassSimilar(false);
+    } else {
+      setPassSimilar(true);
+    }
+  }, [enteredValues]);
 
   function handlePassword() {
     setIsPasswordVisible(!isPasswordVisible);
@@ -31,7 +40,8 @@ function Register({ onRegister, isLoading }) {
       link="/signin"
       onSubmit={handleSubmit}
       isDisabled={!isFormValid}
-      isLoading={isLoading}>
+      isLoading={isLoading}
+      passSimilar={!passSimilar}>
       <label className="form__field">
         Имя
         <input
@@ -107,9 +117,7 @@ function Register({ onRegister, isLoading }) {
           }}
         />
         <span className="form__input-error">{errors.confirm}</span>
-        <span className="form__input-error">
-          {enteredValues.password !== enteredValues.confirm ? ' Пароли не совпадают' : null}
-        </span>
+        <span className="form__input-error">{!passSimilar ? ' Пароли не совпадают' : null}</span>
       </label>
     </Form>
   );

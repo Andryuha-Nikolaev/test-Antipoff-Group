@@ -12,6 +12,7 @@ function Form({
   onSubmit,
   isDisabled,
   isLoading,
+  passSimilar,
 }) {
   return (
     <div className="form__container">
@@ -22,7 +23,7 @@ function Form({
           type="submit"
           disabled={isDisabled ? true : false}
           className={
-            isDisabled || isLoading
+            isDisabled || isLoading || passSimilar
               ? 'form__button-save form__button-save_inactive'
               : 'form__button-save'
           }>
